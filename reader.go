@@ -80,6 +80,7 @@ func (p *MasterPlaylist) decode(buf *bytes.Buffer, strict bool) error {
 	}
 
 	p.attachRenditionsToVariants(state.alternatives)
+	p.Alternatives = state.alternatives
 
 	if strict && !state.m3u {
 		return errors.New("#EXTM3U absent")
@@ -266,6 +267,7 @@ func decode(buf *bytes.Buffer, strict bool, customDecoders []CustomDecoder) (Pla
 
 	switch state.listType {
 	case MASTER:
+		master.Alternatives = state.alternatives
 		return master, MASTER, nil
 	case MEDIA:
 		if media.Closed || media.MediaType == EVENT {

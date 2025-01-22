@@ -152,6 +152,7 @@ type MasterPlaylist struct {
 	buf                 bytes.Buffer
 	ver                 uint8
 	independentSegments bool
+	Alternatives        []*Alternative // EXT-X-MEDIA
 	Custom              map[string]CustomTag
 	customDecoders      []CustomDecoder
 }
